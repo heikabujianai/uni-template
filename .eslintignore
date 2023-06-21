@@ -1,0 +1,10 @@
+build/*.js
+node_modules
+src/assets
+src/static
+src/*.wxml
+src/*.md
+public
+dist
+wxcomponents
+uni_modules

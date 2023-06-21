@@ -1,0 +1,143 @@
+{
+  "name": "",
+  "appid": "",
+  "description": "",
+  "versionName": "1.0.0",
+  "versionCode": "100",
+  "transformPx": false,
+  /* 5+App特有相关 */
+  "app-plus": {
+    "usingComponents": true,
+    "nvueStyleCompiler": "uni-app",
+    "compilerVersion": 3,
+    "splashscreen": {
+      "alwaysShowBeforeRender": true,
+      "waiting": true,
+      "autoclose": true,
+      "delay": 0
+    },
+    /* 模块配置 */
+    "modules": {},
+    /* 应用发布信息 */
+    "distribute": {
+      /* android打包配置 */
+      "android": {
+        "permissions": [
+          "<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
+          "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
+          "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
+          "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
+          "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+          "<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
+          "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+          "<uses-permission android:name=\"android.permission.CAMERA\"/>",
+          "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
+          "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+          "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
+          "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
+          "<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
+          "<uses-feature android:name=\"android.hardware.camera\"/>",
+          "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
+        ]
+      },
+      /* ios打包配置 */
+      "ios": {},
+      /* SDK配置 */
+      "sdkConfigs": {}
+    }
+  },
+  /* 快应用特有相关 */
+  "quickapp": {},
+  /* 小程序特有相关 */
+  "mp-weixin": {
+    "appid": "wxcefd2fdc4c2d9f2c",
+    "lazyCodeLoading": "requiredComponents",
+    "navigateToMiniProgramAppIdList": [],
+    "embeddedAppIdList": [],
+    "optimization": {
+      "subPackages": true
+    },
+    "setting": {
+      // 是否启用 ES6 转 ES5。,
+      "es6": true,
+      // 是否使用增强编译,
+      "enhance": true,
+      // 上传代码时样式是否自动补全,
+      "postcss": true,
+      // 上传代码时是否自动压缩脚本文件,
+      "minified": true,
+      // 上传代码时是否自动压缩样式文件,
+      "minifyWXSS": true,
+      // 上传代码时是否自动压缩 WXML 文件,
+      "minifyWXML": true,
+      // 上传时是否代码保护,
+      "uglifyFileName": true,
+      // 上传时是否过滤无依赖文件,
+      "ignoreUploadUnusedFiles": true,
+      // 是否自动运行体验评分,
+      "autoAudits": false,
+      // 是否检查安全域名和 TLS 版本,
+      "urlCheck": false,
+      // 是否启用代码自动热重载,
+      "compileHotReLoad": true,
+      // 是否启用数据预拉取,
+      "preloadBackgroundData": false,
+      // 是否启用懒注入占位组件调试,
+      "lazyloadPlaceholderEnable": false,
+      // 预览及真机调试的时主包、分包体积上限调整为小程序 4M、小游戏 8M
+      //      "babelSetting": { // 增强编译 Babel 的配置项
+      //        "outputPath": "", // Babel 辅助函数的输出目录，默认为 @babel/runtime。
+      //        "ignore": [] // 需要跳过 Babel 编译（包括代码压缩）处理的文件或目录
+      //      },
+      "bigPackageSizeSupport": false,
+      // 编译插件配置 type [false,"array"]
+      "useCompilerPlugins": false,
+      // 将 JS 编译成 ES5 时，是否禁用严格模式,
+      "disableUseStrict": true,
+      // 上传时是否带上 sourcemap，默认为 true,
+      "uploadWithSourceMap": true,
+      // 是否使用工具渲染 CoverView,
+      "coverView": true,
+      // 预览、真机调试和本地模拟器等开发阶段是否过滤无依赖文件，默认为 true,
+      "ignoreDevUnusedFiles": true,
+      // 是否检查键名,
+      "checkInvalidKey": true,
+      // 是否开启调试器 WXML 面板展示 shadow-root,
+      "showShadowRootInWxmlPanel": true,
+      // 是否开启小程序独立域调试特性,
+      "useIsolateContext": false,
+      // 是否开启模拟器预先载入小程序的某些资源，设置为 false 时会导致 useIsolateContext 失效,
+      "useMultiFrameRuntime": true,
+      // 是否启用 API Hook 功能,
+      "useApiHook": false,
+      // 是否在额外的进程处理一些小程序 API,
+      "useApiHostProcess": false,
+      // 是否在本地设置中展示传统的 ES6 转 ES5 开关（对应 es6），增强编译开关 （对应 enhance）,
+      "showES6CompileOption": true,
+      // 是否检查 SiteMap 索引,
+      "checkSiteMap": true
+    },
+    "usingComponents": true,
+    "preloadRule": {},
+    "functionalPages": false,
+    "plugins": {},
+    "permission": {
+      "scope.userLocation": {
+        "desc": "获取位置信息用于授信、用信、账号异地登录等情况下的风险控制"
+      }
+    }
+  },
+  "mp-alipay": {
+    "usingComponents": true
+  },
+  "mp-baidu": {
+    "usingComponents": true
+  },
+  "mp-toutiao": {
+    "usingComponents": true
+  },
+  "uniStatistics": {
+    "enable": false
+  },
+  "vueVersion": "3"
+}
