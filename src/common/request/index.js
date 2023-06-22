@@ -151,7 +151,6 @@ export function useRequest(baseUrl = BASE_URL) {
     } else {
       startTime = Date.now();
     }
-    console.log(defaultConfig);
     if (CHECK_LOGIN_API) {
       if (!checkLoginApiHandler(url)) {
         return Promise.reject();
@@ -200,7 +199,6 @@ export function useRequest(baseUrl = BASE_URL) {
                   }
                 } else {
                   option.config.consoleDetail && console.log("进入错误code默认处理");
-                  console.log(option.config.silent);
                   !option.config.silent && showToast({
                     title: result[option.config.messageFiled] || option.config.errorMessage,
                     duration: option.config.duration,
