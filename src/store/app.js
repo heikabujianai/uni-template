@@ -1,15 +1,12 @@
 import {defineStore} from "pinia";
 
-const state = {
-  isConnected: true,
-  isShow: false,
-  showTabBar: true,
-};
-
 export const appInfoStore = defineStore("appInfo", {
-  state: () => {
-    return state;
-  },
+  state: () =>({
+    isConnected: true,
+    isShow: false,
+    showTabBar: true,
+    wxAPPID: uni.getAccountInfoSync().miniProgram.appId,
+  }),
   getters: {
     getConnectedStatus: (state) => state.isConnected,
     getShowStatus: (state) => state.isShow,
