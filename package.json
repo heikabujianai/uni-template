@@ -26,11 +26,8 @@
     "@dcloudio/uni-mp-weixin": "3.0.0-alpha-3080620230620001",
     "@dcloudio/uni-mp-xhs": "3.0.0-alpha-3080620230620001",
     "@dcloudio/uni-quickapp-webview": "3.0.0-alpha-3080620230620001",
-    "eslint": "^8.43.0",
-    "eslint-plugin-vue": "^9.15.0",
-    "miniprogram-ci": "^1.9.8",
+    "@dcloudio/uni-ui": "^1.4.28",
     "pinia": "^2.0.21",
-    "vite-plugin-eslint": "^1.8.1",
     "vue": "^3.2.47",
     "vue-i18n": "^9.2.2"
   },
@@ -40,6 +37,12 @@
     "@dcloudio/uni-cli-shared": "3.0.0-alpha-3080620230620001",
     "@dcloudio/uni-stacktracey": "3.0.0-alpha-3080620230620001",
     "@dcloudio/vite-plugin-uni": "3.0.0-alpha-3080620230620001",
+    "vite-plugin-eslint": "^1.8.1",
+    "eslint": "^8.43.0",
+    "eslint-plugin-vue": "^9.15.0",
+    "miniprogram-ci": "^1.9.8",
+    "sass": "^1.63.6",
+    "sass-loader": "10.1.1",
     "vite": "^4.0.3"
   },
   "devToolPath": "D:/微信web开发者工具/cli.bat"
