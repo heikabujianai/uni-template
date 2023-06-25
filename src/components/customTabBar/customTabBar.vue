@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import { readonly, ref} from "vue";
+import {readonly, ref} from "vue";
 import home from "@/static/images/tabBar/home.png";
 import homeSelect from "@/static/images/tabBar/home-select.png";
 import person from "@/static/images/tabBar/person.png";
