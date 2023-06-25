@@ -52,7 +52,6 @@
   "mp-weixin": {
     "appid": "wxcefd2fdc4c2d9f2c",
     "lazyCodeLoading": "requiredComponents",
-    "navigateToMiniProgramAppIdList": [],
     "embeddedAppIdList": [],
     "optimization": {
       "subPackages": true

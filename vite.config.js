@@ -19,7 +19,6 @@ export default defineConfig(({mode}) => {
   // 微信小程序根据打包环境配置APPID
   if (process.env.UNI_PLATFORM === "mp-weixin") {
     replaceManifestFun("mp-weixin.appid", `"${config.VITE_APP_WEIXIN_APPID}"`);
-    replaceManifestFun("mp-weixin.navigateToMiniProgramAppIdList", "[]");
     replaceManifestFun("mp-weixin.embeddedAppIdList", "[]");
   }
 
