@@ -1,5 +1,5 @@
 <template>
-  <view v-if="showTabBar&&isInRootPage" class="custom-tabBar-container">
+  <view v-if="appInfo.showTabBar&&isInRootPage" class="custom-tabBar-container">
     <view class="custom-tabBar-container-padding ios-safe-bottom"/>
     <view class="custom-tab-bar ios-safe-bottom">
       <view v-for="item in rootPage" :key="item.pagePath" class="custom-tab-bar-item" @click="clickHandler(item)">
@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import {computed, readonly, ref} from "vue";
+import { readonly, ref} from "vue";
 import home from "@/static/images/tabBar/home.png";
 import homeSelect from "@/static/images/tabBar/home-select.png";
 import person from "@/static/images/tabBar/person.png";
@@ -39,7 +39,6 @@ defineProps({
 
 const routeList = getCurrentPages();
 const appInfo = appInfoStore();
-const showTabBar = computed(() => appInfo.showTabBar);
 const rootPage = readonly([
   {
     pagePath: "pages/index/index",
