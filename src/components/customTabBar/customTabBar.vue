@@ -1,5 +1,5 @@
 <template>
-  <view v-if="showTabBar&&isInRootPage" class="custom-tabBar-container" :style="{background}">
+  <view v-if="showTabBar&&isInRootPage" class="custom-tabBar-container">
     <view class="custom-tabBar-container-padding ios-safe-bottom"/>
     <view class="custom-tab-bar ios-safe-bottom">
       <view v-for="item in rootPage" :key="item.pagePath" class="custom-tab-bar-item" @click="clickHandler(item)">
@@ -84,6 +84,7 @@ function clickHandler(item) {
 <style lang="scss" scoped>
 .custom-tabBar-container {
   height: 155rpx;
+  background: transparent;
 
   .custom-tab-bar {
     width: 100vw;
