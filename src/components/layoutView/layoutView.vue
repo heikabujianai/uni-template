@@ -151,23 +151,23 @@ watch(
 const query = uni.createSelectorQuery().in(instance);
 let navBarHeight = 0;
 let tabBarHeight = 0;
-query.select(".custom-nav-bar").boundingClientRect((data) => {
-  if (!Array.isArray(data) && data.height) {
-    if (props.isCustomNavBar) {
-      emit("navBarHeightHandler", data.height);
-      navBarHeight = data.height;
-    }
-  }
-}).exec();
+
 query.select(".layout-bottom").boundingClientRect((res) => {
   if (!Array.isArray(res) && res.height) {
     emit("tabBarHeightHandler", res.height);
     tabBarHeight = res.height;
   }
+  query.select(".custom-nav-bar").boundingClientRect((data) => {
+    if (props.isCustomNavBar && !Array.isArray(data) && data.height) {
+      emit("navBarHeightHandler", data.height);
+      navBarHeight = data.height;
+    }
+    nextTick(() => {
+      emit("contentHeightHandler", `calc(100vh - ${navBarHeight + tabBarHeight})px`);
+    });
+  }).exec();
 }).exec();
-nextTick(() => {
-  emit("contentHeightHandler", `calc(100vh - ${navBarHeight + tabBarHeight})px`);
-});
+
 const clickLeft = () => {
   uni.navigateBack({
     delta: 1,
