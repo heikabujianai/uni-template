@@ -52,8 +52,10 @@
       </template>
       <view class="layout-content">
         <slot/>
-        <custom-tab-bar :background="background" @tab-bar-click="tabBarClick"/>
-        <view class="ios-safe-bottom"/>
+        <view class="layout-bottom">
+          <custom-tab-bar :background="background" @tab-bar-click="tabBarClick"/>
+          <view class="ios-safe-bottom"/>
+        </view>
       </view>
     </view>
   </view>
@@ -65,7 +67,7 @@ import {computed, watch, nextTick, getCurrentInstance} from "vue";
 import {INDEX_PATH} from "@/config";
 
 const instance = getCurrentInstance();
-const emit = defineEmits(["navBarHeightHandler", "tabBarClick"]);
+const emit = defineEmits(["navBarHeightHandler", "tabBarHeightHandler", "contentHeightHandler", "tabBarClick"]);
 
 const props = defineProps({
   isCustomNavBar: {
@@ -145,14 +147,27 @@ watch(
   },
   {immediate: true}
 );
-if (props.isCustomNavBar && props.isOverall) {
-  const info = uni.createSelectorQuery().in(instance).select(".custom-nav-bar");
-  info.boundingClientRect((data) => {
-    if (!Array.isArray(data) && data.height) {
+
+const query = uni.createSelectorQuery().in(instance);
+let navBarHeight = 0;
+let tabBarHeight = 0;
+query.select(".custom-nav-bar").boundingClientRect((data) => {
+  if (!Array.isArray(data) && data.height) {
+    if (props.isCustomNavBar) {
       emit("navBarHeightHandler", data.height);
+      navBarHeight = data.height;
+    }
+  }
+  query.select(".layout-bottom").boundingClientRect((res) => {
+    if (!Array.isArray(res) && res.height) {
+      emit("tabBarHeightHandler", res.height);
+      tabBarHeight = res.height;
     }
   }).exec();
-}
+  nextTick(() => {
+    emit("contentHeightHandler", `calc(100vh - ${navBarHeight + tabBarHeight})px`);
+  });
+}).exec();
 
 const clickLeft = () => {
   uni.navigateBack({
