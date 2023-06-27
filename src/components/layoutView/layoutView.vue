@@ -158,17 +158,16 @@ query.select(".custom-nav-bar").boundingClientRect((data) => {
       navBarHeight = data.height;
     }
   }
-  query.select(".layout-bottom").boundingClientRect((res) => {
-    if (!Array.isArray(res) && res.height) {
-      emit("tabBarHeightHandler", res.height);
-      tabBarHeight = res.height;
-    }
-  }).exec();
-  nextTick(() => {
-    emit("contentHeightHandler", `calc(100vh - ${navBarHeight + tabBarHeight})px`);
-  });
 }).exec();
-
+query.select(".layout-bottom").boundingClientRect((res) => {
+  if (!Array.isArray(res) && res.height) {
+    emit("tabBarHeightHandler", res.height);
+    tabBarHeight = res.height;
+  }
+}).exec();
+nextTick(() => {
+  emit("contentHeightHandler", `calc(100vh - ${navBarHeight + tabBarHeight})px`);
+});
 const clickLeft = () => {
   uni.navigateBack({
     delta: 1,
