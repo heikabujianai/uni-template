@@ -9,7 +9,7 @@
     <view class="layout-container-page">
       <template v-if="isCustomNavBar">
         <uni-nav-bar
-          class="custom-nav-bar"
+          id="custom-nav-bar"
           :title="title"
           :left-icon="navBarOptions.leftIcon"
           :left-text="navBarOptions.leftText"
@@ -52,7 +52,7 @@
       </template>
       <view class="layout-content">
         <slot/>
-        <view class="layout-bottom">
+        <view id="layout-bottom">
           <custom-tab-bar :background="background" @tab-bar-click="tabBarClick"/>
           <view class="ios-safe-bottom"/>
         </view>
@@ -154,12 +154,12 @@ onShow(() => {
   let navBarHeight = 0;
   let tabBarHeight = 0;
 
-  query.select(".layout-bottom").boundingClientRect((res) => {
+  query.select("#layout-bottom").boundingClientRect((res) => {
     if (!Array.isArray(res) && res.height) {
       emit("tabBarHeightHandler", res.height);
       tabBarHeight = res.height;
     }
-    query.select(".custom-nav-bar").boundingClientRect((data) => {
+    query.select("#custom-nav-bar").boundingClientRect((data) => {
       if (props.isCustomNavBar && !Array.isArray(data) && data.height) {
         emit("navBarHeightHandler", data.height);
         navBarHeight = data.height;
