@@ -82,7 +82,7 @@ function clickHandler(item) {
 
 <style lang="scss" scoped>
 .custom-tabBar-container {
-  height: 155rpx;
+  height: 108rpx;
   background: transparent;
 
   .custom-tab-bar {
