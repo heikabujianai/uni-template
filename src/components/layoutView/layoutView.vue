@@ -65,6 +65,7 @@
 import CustomTabBar from "@/components/customTabBar/customTabBar.vue";
 import {computed, watch, nextTick, getCurrentInstance} from "vue";
 import {INDEX_PATH} from "@/config";
+import {onShow} from "@dcloudio/uni-app";
 
 const instance = getCurrentInstance();
 const emit = defineEmits(["navBarHeightHandler", "tabBarHeightHandler", "contentHeightHandler", "tabBarClick"]);
@@ -148,25 +149,27 @@ watch(
   {immediate: true}
 );
 
-const query = uni.createSelectorQuery().in(instance);
-let navBarHeight = 0;
-let tabBarHeight = 0;
+onShow(() => {
+  const query = uni.createSelectorQuery().in(instance);
+  let navBarHeight = 0;
+  let tabBarHeight = 0;
 
-query.select(".layout-bottom").boundingClientRect((res) => {
-  if (!Array.isArray(res) && res.height) {
-    emit("tabBarHeightHandler", res.height);
-    tabBarHeight = res.height;
-  }
-  query.select(".custom-nav-bar").boundingClientRect((data) => {
-    if (props.isCustomNavBar && !Array.isArray(data) && data.height) {
-      emit("navBarHeightHandler", data.height);
-      navBarHeight = data.height;
+  query.select(".layout-bottom").boundingClientRect((res) => {
+    if (!Array.isArray(res) && res.height) {
+      emit("tabBarHeightHandler", res.height);
+      tabBarHeight = res.height;
     }
-    nextTick(() => {
-      emit("contentHeightHandler", `calc(100vh - ${navBarHeight + tabBarHeight})px`);
-    });
+    query.select(".custom-nav-bar").boundingClientRect((data) => {
+      if (props.isCustomNavBar && !Array.isArray(data) && data.height) {
+        emit("navBarHeightHandler", data.height);
+        navBarHeight = data.height;
+      }
+      nextTick(() => {
+        emit("contentHeightHandler", `calc(100vh - ${navBarHeight + tabBarHeight})px`);
+      });
+    }).exec();
   }).exec();
-}).exec();
+});
 
 const clickLeft = () => {
   uni.navigateBack({
