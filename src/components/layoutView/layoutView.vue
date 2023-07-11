@@ -93,11 +93,6 @@ const props = defineProps({
     type: String,
     default: "",
   },
-  isOverall: {
-    type: Boolean,
-    default: false,
-  },
-
 });
 
 const navBarOptions = computed(() => {
@@ -195,15 +190,6 @@ const tabBarClick = (path) => {
   .layout-content {
     height: 100%;
     width: 100%;
-    background: transparent;
-  }
-
-  .layout-content-fixed {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    overflow: auto;
     background: transparent;
   }
 }
