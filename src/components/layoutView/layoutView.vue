@@ -72,7 +72,7 @@ const props = defineProps({
   },
   background: {
     type: String,
-    default: "#FFFFFF",
+    default: "transparent",
   },
   navBarProps: {
     type: Object,
