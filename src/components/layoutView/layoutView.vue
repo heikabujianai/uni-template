@@ -82,7 +82,7 @@ const props = defineProps({
       rightIcon: "",
       rightText: "",
       color: "#000000",
-      backgroundColor: "#FFFFFF",
+      backgroundColor: "transparent",
       fixed: true,
       statusBar: true,
       shadow: false,
