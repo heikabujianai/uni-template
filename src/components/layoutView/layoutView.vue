@@ -1,10 +1,5 @@
 <template>
-  <view
-    class="layout-container"
-    :class="{
-      'layout-container-uni-navbar__placeholder': isOverall
-    }"
-  >
+  <view class="layout-container">
     <view class="bg" :style="{background}"/>
     <view class="layout-container-page">
       <template v-if="isCustomNavBar">
@@ -114,7 +109,7 @@ const navBarOptions = computed(() => {
         rightIcon: "",
         rightText: "",
         color: "#000000",
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "transparent",
         fixed: true,
         statusBar: true,
         shadow: false,
@@ -126,9 +121,6 @@ const navBarOptions = computed(() => {
     delete result.rightIcon;
     delete result.rightText;
     // #endif
-    if (props.isOverall) {
-      result.backgroundColor = "transparent";
-    }
     return result;
   }
   return {};
