@@ -61,7 +61,11 @@ if (Array.isArray(routeList) && routeList.length) {
   isInRootPage.value = rootPageList.includes(routeList[routeList.length - 1].route);
   activePath.value = routeList[routeList.length - 1].route;
   if (appInfo.showTabBar && isInRootPage.value) {
-    uni.hideTabBar();
+    uni.hideTabBar({
+      fail: e => {
+        console.log(e);
+      },
+    });
   }
 }
 
