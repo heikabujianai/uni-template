@@ -1,57 +1,52 @@
 <template>
+  <view class="bg" :style="{background}"/>
   <view class="layout-container">
-    <view class="bg" :style="{background}"/>
-    <view class="layout-container-page">
-      <template v-if="isCustomNavBar">
-        <uni-nav-bar
-          id="custom-nav-bar"
-          :title="title"
-          :left-icon="navBarOptions.leftIcon"
-          :left-text="navBarOptions.leftText"
-          :right-icon="navBarOptions.rightIcon"
-          :right-text="navBarOptions.rightText"
-          :color="navBarOptions.color"
-          :background-color="navBarOptions.backgroundColor"
-          :fixed="navBarOptions.fixed"
-          :status-bar="navBarOptions.statusBar"
-          :shadow="navBarOptions.shadow"
-          :border="navBarOptions.border"
-          @click-left="clickLeft"
-        >
-          <template #left>
-            <slot name="left">
-              <view v-if="navBarOptions.leftIcon" class="uni-navbar__content_view">
-                <uni-icons :color="navBarOptions.color" :type="navBarOptions.leftIcon" size="20"/>
-              </view>
-              <view
-                v-if="navBarOptions.leftText" :class="{ 'uni-navbar-btn-icon-left': !navBarOptions.leftIcon }"
-                class="uni-navbar-btn-text"
-              >
-                <text :style="{ color: navBarOptions.color, fontSize: '12px' }">
-                  {{ navBarOptions.leftText }}
-                </text>
-              </view>
-            </slot>
-          </template>
-
-          <template #default>
-            <view class="uni-navbar__header-container-inner">
-              <slot name="title">
-                <text class="uni-nav-bar-text uni-ellipsis-1" :style="{ color: navBarOptions.color }">
-                  {{ title }}
-                </text>
-              </slot>
-            </view>
-          </template>
-        </uni-nav-bar>
+    <uni-nav-bar
+      v-if="isCustomNavBar"
+      id="custom-nav-bar"
+      :title="title"
+      :left-icon="navBarOptions.leftIcon"
+      :left-text="navBarOptions.leftText"
+      :right-icon="navBarOptions.rightIcon"
+      :right-text="navBarOptions.rightText"
+      :color="navBarOptions.color"
+      :background-color="navBarOptions.backgroundColor"
+      :fixed="navBarOptions.fixed"
+      :status-bar="navBarOptions.statusBar"
+      :shadow="navBarOptions.shadow"
+      :border="navBarOptions.border"
+      @click-left="clickLeft"
+    >
+      <template #left>
+        <slot name="left">
+          <view v-if="navBarOptions.leftIcon" class="uni-navbar__content_view">
+            <uni-icons :color="navBarOptions.color" :type="navBarOptions.leftIcon" size="20"/>
+          </view>
+          <view
+            v-if="navBarOptions.leftText" :class="{ 'uni-navbar-btn-icon-left': !navBarOptions.leftIcon }"
+            class="uni-navbar-btn-text"
+          >
+            <text :style="{ color: navBarOptions.color, fontSize: '12px' }">
+              {{ navBarOptions.leftText }}
+            </text>
+          </view>
+        </slot>
       </template>
-      <view class="layout-content">
-        <slot/>
-        <view id="layout-bottom">
-          <custom-tab-bar :background="background" @tab-bar-click="tabBarClick"/>
-          <view class="ios-safe-bottom"/>
+
+      <template #default>
+        <view class="uni-navbar__header-container-inner">
+          <slot name="title">
+            <text class="uni-nav-bar-text uni-ellipsis-1" :style="{ color: navBarOptions.color }">
+              {{ title }}
+            </text>
+          </slot>
         </view>
-      </view>
+      </template>
+    </uni-nav-bar>
+    <slot/>
+    <view id="layout-bottom">
+      <custom-tab-bar :background="background" @tab-bar-click="tabBarClick"/>
+      <view class="ios-safe-bottom"/>
     </view>
   </view>
 </template>
@@ -63,7 +58,7 @@ import {INDEX_PATH} from "@/config";
 import {onShow} from "@dcloudio/uni-app";
 
 const instance = getCurrentInstance();
-const emit = defineEmits(["navBarHeightHandler", "tabBarHeightHandler", "contentHeightHandler", "tabBarClick"]);
+const emit = defineEmits(["navBarHeightHandler", "tabBarHeightHandler", "contentHeightHandler", "tabBarClick", "clickLeft"]);
 
 const props = defineProps({
   isCustomNavBar: {
@@ -151,14 +146,18 @@ onShow(() => {
 });
 
 const clickLeft = () => {
-  uni.navigateBack({
-    delta: 1,
-    fail() {
-      uni.switchTab({
-        url: INDEX_PATH,
-      });
-    },
-  });
+  if (instance.slots.left) {
+    emit("clickLeft");
+  } else {
+    uni.navigateBack({
+      delta: 1,
+      fail() {
+        uni.switchTab({
+          url: INDEX_PATH,
+        });
+      },
+    });
+  }
 };
 const tabBarClick = (path) => {
   emit("tabBarClick", path);
@@ -167,30 +166,16 @@ const tabBarClick = (path) => {
 
 <style lang="scss" scoped>
 .layout-container {
-  width: 100%;
-  min-height: 100%;
   font-size: 32rpx;
+  position: relative;
 
   .bg {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     position: fixed;
     left: 0;
     top: 0;
-    z-index: -1;
-  }
-
-  .layout-container-page {
-    height: 100%;
-    width: 100%;
-    background: transparent;
-    position: relative;
-  }
-
-  .layout-content {
-    height: 100%;
-    width: 100%;
-    background: transparent;
+    z-index: -2;
   }
 }
 
